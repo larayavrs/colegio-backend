@@ -86,4 +86,42 @@ Este esquema define la estructura de un anuncio en el sistema de gestión escola
 - Relaciones:
   - `user (teacher | admin)`: Referencia al esquema `User`, indicando que un anuncio es creado por un profesor o un administrador.
 
-  
+### Rutas
+
+- [Auth](#auth)
+- [Users](#users)
+- [Grades](#grades)
+- [Courses](#courses)
+- [Subjects](#subjects)
+- [Lessons](#lessons)
+- [Exams](#exams)
+- [Assignments](#assignments)
+- [Results](#results)
+- [Atendances](#atendances)
+- [Events](#events)
+- [Announcements](#announcements)
+
+#### <kbd>Auth</kbd>
+Aqui se encuentran todas las rutas relacionadas con la autenticación del sistema.
+
+##### POST api/v1/users/login
+> User must be registered once before logging in.
+###### Body
+```json
+{
+  "email": "useremail@example.com",
+  "password": "userpassword"
+}
+```
+
+##### GET api/v1/users/me
+> Requires authentication to access this route.
+
+###### Response
+```json
+{
+  "email": "useremail@example.com",
+  "username": "username",
+  "role": "teacher"
+}
+```

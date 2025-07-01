@@ -9,17 +9,11 @@ const usersController = require('../controllers/users.controller');
 
 /* middlewares */
 const authentication = require('../middlewares/authentication');
-const ownership = require('../middlewares/ownership');
 const validation = require('../middlewares/validation');
 
 const usersValidations = require('../validators/users');
 
 /* auth routing */
-router.post(
-  '/register',
-  validation(usersValidations.create),
-  authController.register,
-);
 router.post(
   '/login',
   validation(usersValidations.login),
@@ -33,7 +27,6 @@ router.get('/user/:id', usersController.findById);
 router.patch(
   '/:id',
   authentication,
-  ownership,
   validation(usersValidations.update),
   usersController.update,
 );
