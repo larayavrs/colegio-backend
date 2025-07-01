@@ -3,7 +3,7 @@ const jwtService = require('../services/jwt.service');
 const usersService = require('../services/users.service');
 
 /* another required modules */
-const LoomError = require('../helpers/errors');
+const GlobalError = require('../helpers/errors');
 const catchAsync = require('../helpers/catch-async');
 const config = require('../config');
 
@@ -13,7 +13,7 @@ module.exports = catchAsync(async (req, _, next) => {
       req.headers.authorization ||
       req.cookies.authorization;
     if (!bearer)
-      throw new LoomError({
+      throw new GlobalError({
         type: 'Unauthorized',
         message:
           'No token provided, please log-in to continue',
@@ -21,7 +21,7 @@ module.exports = catchAsync(async (req, _, next) => {
       });
     bearer = bearer.split(' ')[1];
     if (!bearer)
-      throw new LoomError({
+      throw new GlobalError({
         type: 'Unauthorized',
         message: 'Token format is invalid',
         code: 401,
@@ -32,7 +32,7 @@ module.exports = catchAsync(async (req, _, next) => {
     );
     const user = await usersService.findById(payload.id);
     if (!user)
-      throw new LoomError({
+      throw new GlobalError({
         type: 'Unauthorized',
         message:
           'The user associated with this token does not exist',

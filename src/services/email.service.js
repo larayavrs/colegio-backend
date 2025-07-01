@@ -3,7 +3,7 @@ const path = require('path');
 const hbs = require('handlebars');
 const fs = require('fs');
 const config = require('../config');
-const LoomError = require('../helpers/errors');
+const GlobalError = require('../helpers/errors');
 
 module.exports = {
   transport: ndm.createTransport({
@@ -64,7 +64,7 @@ module.exports = {
         html,
       });
     } catch (error) {
-      throw new LoomError({
+      throw new GlobalError({
         message: 'Error sending email',
         code: 500,
         errors: [error.message],

@@ -1,5 +1,5 @@
 /* required modules */
-const LoomError = require('../helpers/errors');
+const GlobalError = require('../helpers/errors');
 const success = require('../helpers/success');
 const catchAsync = require('../helpers/catch-async');
 
@@ -17,7 +17,7 @@ module.exports = {
       const { email, password } = req.body;
       const user = await usersService.findBy({ email });
       if (!user)
-        throw new LoomError({
+        throw new GlobalError({
           message: 'User does not exist in the database',
           code: 404,
         });
@@ -39,7 +39,7 @@ module.exports = {
   me: catchAsync(async (req, res, next) => {
     try {
       if (!req.user)
-        throw new LoomError({
+        throw new GlobalError({
           message:
             'An error occurred while getting user information',
           code: 404,
@@ -48,7 +48,7 @@ module.exports = {
         req.user.id,
       );
       if (!details)
-        throw new LoomError({
+        throw new GlobalError({
           type: 'User not found',
           message:
             'The user does not exist, please log-in to continue',

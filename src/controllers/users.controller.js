@@ -1,4 +1,4 @@
-const LoomError = require('../helpers/errors');
+const GlobalError = require('../helpers/errors');
 
 const success = require('../helpers/success');
 const catchAsync = require('../helpers/catch-async');
@@ -10,7 +10,7 @@ module.exports = {
     try {
       const users = await usersService.everyone();
       if (!users || !users.length)
-        throw new LoomError({
+        throw new GlobalError({
           message: 'No users were found',
           code: 404,
         });
@@ -30,7 +30,7 @@ module.exports = {
       const { id } = req.params;
       const { username, email, bio, avatar } = req.body;
       if (req.user.id !== id)
-        throw new LoomError({
+        throw new GlobalError({
           message:
             'You do not have permission to update this user',
           code: 403,
@@ -42,7 +42,7 @@ module.exports = {
         avatar,
       });
       if (!user)
-        throw new LoomError({
+        throw new GlobalError({
           message: 'User not found',
           code: 404,
         });
@@ -62,7 +62,7 @@ module.exports = {
       const { id } = req.params;
       const user = await usersService.findById(id);
       if (!user)
-        throw new LoomError({
+        throw new GlobalError({
           message: 'User not found',
           code: 404,
         });
@@ -85,7 +85,7 @@ module.exports = {
         'verification',
       );
       if (!payload || !payload.email)
-        throw new LoomError({
+        throw new GlobalError({
           message: 'Invalid or expired verification token',
           code: 400,
         });
@@ -93,12 +93,12 @@ module.exports = {
         email: payload.email,
       });
       if (!user)
-        throw new LoomError({
+        throw new GlobalError({
           message: 'User not found',
           code: 404,
         });
       if (user.verified)
-        throw new LoomError({
+        throw new GlobalError({
           message: 'User is already verified',
           code: 400,
         });

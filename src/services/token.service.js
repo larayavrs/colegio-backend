@@ -1,6 +1,6 @@
 const Token = require('../schemas/token.schema');
 
-const LoomError = require('../helpers/errors');
+const GlobalError = require('../helpers/errors');
 
 const config = require('../config');
 const jwtService = require('./jwt.service');
@@ -34,7 +34,7 @@ module.exports = {
         });
       return token;
     } catch (error) {
-      throw new LoomError({
+      throw new GlobalError({
         type: 'Token Error',
         message: error.message,
         code: 500,
@@ -56,7 +56,7 @@ module.exports = {
         config.jwt[type].secret,
       );
     } catch (error) {
-      throw new LoomError({
+      throw new GlobalError({
         type: 'Token Verification Error',
         message: error.message,
         code: 500,

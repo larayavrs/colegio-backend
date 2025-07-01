@@ -1,4 +1,4 @@
-const LoomError = require('../helpers/errors');
+const GlobalError = require('../helpers/errors');
 const mongoose = require('mongoose');
 const config = require('../config');
 
@@ -6,7 +6,7 @@ module.exports = (err, req, res, next) => {
   if (config.global.env === 'development')
     console.error(err);
 
-  if (err instanceof LoomError) {
+  if (err instanceof GlobalError) {
     return res.status(err.code).json({
       type: err.type,
       message: err.message,

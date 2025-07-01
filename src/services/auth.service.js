@@ -1,7 +1,7 @@
 const tokenService = require('./token.service');
 const crypterService = require('./crypter.service');
 
-const LoomError = require('../helpers/errors');
+const GlobalError = require('../helpers/errors');
 
 module.exports = {
   login: async (user, password) => {
@@ -11,7 +11,7 @@ module.exports = {
         user.password,
       );
       if (!valid)
-        throw new LoomError({
+        throw new GlobalError({
           message:
             'Invalid credentials or user does not exist',
           code: 401,
