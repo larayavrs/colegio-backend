@@ -8,6 +8,15 @@ Permite a los usuarios gestionar la información de estudiantes, profesores y cu
 - [Esquemas](#esquemas)
   - [User](#user)
   - [Grade](#grade)
+  - [Course](#course)
+  - [Subject](#subject)
+  - [Lesson](#lesson)
+  - [Exam](#exam)
+  - [Assignment](#assignment)
+  - [Result](#result)
+  - [Atendance](#atendance)
+  - [Event](#event)
+  - [Announcement](#announcement)
 - [Rutas](#rutas)
 
 ### Esquemas
@@ -105,7 +114,7 @@ Este esquema define la estructura de un anuncio en el sistema de gestión escola
 Aqui se encuentran todas las rutas relacionadas con la autenticación del sistema.
 
 ##### POST api/v1/users/login
-> User must be registered once before logging in.
+> El usuario debe existir o haber sido creado previamente.
 ###### Body
 ```json
 {
@@ -115,9 +124,9 @@ Aqui se encuentran todas las rutas relacionadas con la autenticación del sistem
 ```
 
 ##### GET api/v1/users/me
-> Requires authentication to access this route.
+> Requiere autenticación antes de acceder a esta ruta.
 
-###### Response
+###### Respuesta
 ```json
 {
   "email": "useremail@example.com",
