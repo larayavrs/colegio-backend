@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+build/
+.vscode/
+pnpm-debug.log
+pnpm-lock.yaml
+README.md
