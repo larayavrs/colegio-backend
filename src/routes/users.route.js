@@ -19,11 +19,10 @@ router.post(
   validation(usersValidations.login),
   authController.login,
 );
+router.get('/me', authentication, authController.me);
 
 /* user routing */
-router.get('/me', authentication, authController.me);
 router.get('/user/:id', usersController.findById);
-// router.get('/verify/:token', usersController.verifyEmail);
 router.patch(
   '/:id',
   authentication,
@@ -31,5 +30,13 @@ router.patch(
   usersController.update,
 );
 router.get('/', authentication, usersController.everyone);
+
+/* admin routing */
+router.post(
+  '/create',
+  authentication,
+  validation(usersValidations.create),
+  usersController.create,
+);
 
 module.exports = router;
