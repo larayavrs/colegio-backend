@@ -8,8 +8,6 @@ const config = require('../config');
 /* services used in this controller */
 const usersService = require('../services/users.service');
 const authService = require('../services/auth.service');
-const tokenService = require('../services/token.service');
-const emailService = require('../services/email.service');
 
 module.exports = {
   login: catchAsync(async (req, res, next) => {
