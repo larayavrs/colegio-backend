@@ -2,28 +2,64 @@ const { check } = require('express-validator');
 
 module.exports = {
   create: [
-    check('username')
+    check('firstname')
       .exists()
-      .withMessage('Username is required')
+      .withMessage('El primer nombre es requerido')
+      .isString()
+      .withMessage(
+        'El primer nombre debe ser una cadena de texto',
+      )
       .isLength({ min: 3, max: 14 })
       .withMessage(
-        'Username must be between 3 and 14 characters long',
-      )
+        'El primer nombre debe tener entre 3 y 14 caracteres',
+      ),
+    check('lastname')
+      .exists()
+      .withMessage('El apellido es requerido')
       .isString()
-      .withMessage('Username must be a string text'),
+      .withMessage(
+        'El apellido debe ser una cadena de texto',
+      )
+      .isLength({ min: 3, max: 14 })
+      .withMessage(
+        'El apellido debe tener entre 3 y 14 caracteres',
+      ),
     check('email')
       .exists()
-      .withMessage('Email is required')
+      .withMessage('El correo es requerido')
       .isEmail()
-      .withMessage('Email is not valid'),
+      .withMessage('El correo es inválido'),
     check('password')
       .exists()
-      .withMessage('Password is required')
+      .withMessage('La contraseña es requerida')
       .isString()
-      .withMessage('Password must be a string text')
-      .isLength({ min: 8 })
       .withMessage(
-        'Password must be at least 8 characters long',
+        'La contraseña debe ser una cadena de texto',
+      )
+      .isLength({ min: 6, max: 14 })
+      .withMessage(
+        'La contraseña debe tener entre 6 y 14 caracteres',
+      ),
+    check('role')
+      .exists()
+      .withMessage('El rol es requerido')
+      .isIn(['student', 'teacher', 'admin'])
+      .withMessage(
+        'El rol debe ser uno de los siguientes: student, teacher, admin',
+      ),
+    check('rut')
+      .optional()
+      .isString()
+      .withMessage('El rut debe ser una cadena de texto'),
+    check('phone')
+      .optional()
+      .isString()
+      .withMessage(
+        'El teléfono debe ser una cadena de texto',
+      )
+      .isMobilePhone('es-CL')
+      .withMessage(
+        'El teléfono debe ser un número de Chile',
       ),
   ],
   login: [
