@@ -16,7 +16,7 @@ module.exports = {
       const user = await usersService.findBy({ email });
       if (!user)
         throw new GlobalError({
-          message: 'User does not exist in the database',
+          message: 'El usuario no fue encontrado',
           code: 404,
         });
       const result = await authService.login(
@@ -26,7 +26,7 @@ module.exports = {
       success({
         res,
         code: 200,
-        message: 'User logged in successfully',
+        message: 'Login exitoso',
         body: result,
       });
     } catch (error) {
@@ -39,7 +39,7 @@ module.exports = {
       if (!req.user)
         throw new GlobalError({
           message:
-            'An error occurred while getting user information',
+            'Un error ha ocurrido al obtener la información del usuario',
           code: 404,
         });
       const details = await usersService.findById(
@@ -49,13 +49,14 @@ module.exports = {
         throw new GlobalError({
           type: 'User not found',
           message:
-            'The user does not exist, please log-in to continue',
+            'El usuario no existe, por favor inicie sesión',
           code: 404,
         });
       success({
         res,
         code: 200,
-        message: 'User information retrieved successfully',
+        message:
+          'Información del usuario obtenida exitosamente',
         body: details,
       });
     } catch (error) {
