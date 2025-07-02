@@ -5,8 +5,14 @@ const crypterService = require('../services/crypter.service');
 const userSchema = new Schema({
   username: {
     type: String,
-    required: true,
     unique: true,
+  },
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true,
+    lowercase: true,
   },
   password: {
     type: String,
@@ -26,13 +32,15 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  email: {
+  rut: {
     type: String,
+    required: true,
     unique: true,
   },
   phone: {
     type: String,
     unique: true,
+    required: true,
   },
   address: { type: String },
   avatar: { type: String },
