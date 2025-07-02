@@ -63,23 +63,13 @@ module.exports = {
   update: catchAsync(async (req, res, next) => {
     try {
       const { id } = req.params;
-      const { username, email, bio, avatar } = req.body;
+      const { firstname, lastname, address, phone } =
+        req.body;
       if (req.user.id !== id)
         throw new GlobalError({
           message:
             'No tienes permiso para actualizar este usuario',
           code: 403,
-        });
-      const user = await usersService.update(id, {
-        username,
-        email,
-        bio,
-        avatar,
-      });
-      if (!user)
-        throw new GlobalError({
-          message: 'El usuario no fue encontrado',
-          code: 404,
         });
       success({
         res,
