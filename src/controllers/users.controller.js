@@ -71,6 +71,12 @@ module.exports = {
             'No tienes permiso para actualizar este usuario',
           code: 403,
         });
+      const user = await usersService.update(id, {
+        firstname,
+        lastname,
+        address,
+        phone,
+      });
       success({
         res,
         code: 200,
