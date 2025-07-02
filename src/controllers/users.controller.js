@@ -11,14 +11,49 @@ module.exports = {
       const users = await usersService.everyone();
       if (!users || !users.length)
         throw new GlobalError({
-          message: 'No users were found',
+          message: 'Los usuarios no fueron encontrado',
           code: 404,
         });
       success({
         res,
         code: 200,
-        message: 'Users retrieved successfully',
+        message: 'Obteniendo usuarios exitosamente',
         body: users,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }),
+
+  create: catchAsync(async (req, res, next) => {
+    try {
+      const {
+        firstname,
+        lastname,
+        email,
+        password,
+        role,
+        rut,
+      } = req.body;
+      if (req.user.role !== 'admin')
+        throw new GlobalError({
+          message:
+            'No tienes permiso para crear un usuario',
+          code: 403,
+        });
+      const user = await usersService.create({
+        firstname,
+        lastname,
+        email,
+        password,
+        role,
+        rut,
+      });
+      success({
+        res,
+        code: 201,
+        message: 'Usuario creado exitosamente',
+        body: user,
       });
     } catch (error) {
       next(error);
@@ -32,7 +67,7 @@ module.exports = {
       if (req.user.id !== id)
         throw new GlobalError({
           message:
-            'You do not have permission to update this user',
+            'No tienes permiso para actualizar este usuario',
           code: 403,
         });
       const user = await usersService.update(id, {
@@ -43,13 +78,13 @@ module.exports = {
       });
       if (!user)
         throw new GlobalError({
-          message: 'User not found',
+          message: 'El usuario no fue encontrado',
           code: 404,
         });
       success({
         res,
         code: 200,
-        message: 'User updated successfully',
+        message: 'Usuario actualizado exitosamente',
         body: user,
       });
     } catch (error) {
@@ -63,13 +98,13 @@ module.exports = {
       const user = await usersService.findById(id);
       if (!user)
         throw new GlobalError({
-          message: 'User not found',
+          message: 'El usuario no fue encontrado',
           code: 404,
         });
       success({
         res,
         code: 200,
-        message: 'User retrieved successfully',
+        message: 'Obteniendo usuario exitosamente',
         body: user,
       });
     } catch (error) {
