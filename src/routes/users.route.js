@@ -8,6 +8,7 @@ const authController = require('../controllers/auth.controller');
 const usersController = require('../controllers/users.controller');
 
 /* middlewares */
+const authorization = require('../middlewares/authorization');
 const authentication = require('../middlewares/authentication');
 const validation = require('../middlewares/validation');
 
@@ -35,6 +36,7 @@ router.get('/', authentication, usersController.everyone);
 router.post(
   '/create',
   authentication,
+  authorization(['teacher', 'admin']),
   validation(usersValidations.create),
   usersController.create,
 );
