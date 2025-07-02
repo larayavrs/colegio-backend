@@ -14,16 +14,15 @@ module.exports = catchAsync(async (req, _, next) => {
       req.cookies.authorization;
     if (!bearer)
       throw new GlobalError({
-        type: 'Unauthorized',
-        message:
-          'No token provided, please log-in to continue',
+        type: 'No autorizado',
+        message: 'Ningun token fue proporcionado',
         code: 401,
       });
     bearer = bearer.split(' ')[1];
     if (!bearer)
       throw new GlobalError({
-        type: 'Unauthorized',
-        message: 'Token format is invalid',
+        type: 'No autorizado',
+        message: 'El formato del token es incorrecto',
         code: 401,
       });
     const payload = await jwtService.verify(
@@ -35,7 +34,7 @@ module.exports = catchAsync(async (req, _, next) => {
       throw new GlobalError({
         type: 'Unauthorized',
         message:
-          'The user associated with this token does not exist',
+          'El usuario asociado al token no fue encontrado o no existe',
         code: 401,
       });
     req.user = { ...payload, ...user.toJSON() };

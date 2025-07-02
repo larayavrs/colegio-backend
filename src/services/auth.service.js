@@ -13,7 +13,7 @@ module.exports = {
       if (!valid)
         throw new GlobalError({
           message:
-            'Invalid credentials or user does not exist',
+            'Credenciales incorrectas, por favor intente de nuevo',
           code: 401,
         });
       const payload = {

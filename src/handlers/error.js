@@ -11,7 +11,7 @@ module.exports = (err, req, res, next) => {
       type: err.type,
       message: err.message,
       code: err.code,
-      status: 'An error occurred',
+      status: 'Un error ha ocurrido',
       errors: err.errors,
     });
   }
@@ -19,9 +19,9 @@ module.exports = (err, req, res, next) => {
   if (err instanceof mongoose.Error.ValidationError) {
     return res.status(400).json({
       type: 'ValidationError',
-      message: 'Validation failed',
+      message: 'La validación de los datos ha fallado',
       code: 400,
-      status: 'An error occurred',
+      status: 'Un error ha ocurrido',
       errors: Object.values(err.errors).map(
         (e) => e.message,
       ),
