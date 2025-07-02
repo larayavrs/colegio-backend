@@ -47,7 +47,7 @@ module.exports = {
       );
       if (!details)
         throw new GlobalError({
-          type: 'User not found',
+          type: 'El usuario no existe',
           message:
             'El usuario no existe, por favor inicie sesión',
           code: 404,
