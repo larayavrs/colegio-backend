@@ -1,7 +1,7 @@
 {
-  "name": "backend-loom",
+  "name": "backend-sistema-colegio",
   "version": "1.0.0",
-  "description": "RESTful API for Loom coding and snippet sharing",
+  "description": "Sistema de gestion escolar",
   "main": "index.js",
   "private": true,
   "scripts": {
@@ -12,12 +12,10 @@
   },
   "keywords": [
     "api",
-    "community",
-    "rest-api",
-    "mongo",
-    "express",
-    "snippets",
-    "free"
+    "sistema",
+    "colegio",
+    "chile",
+    "automatizacion"
   ],
   "author": "Leo Araya",
   "license": "ISC",
