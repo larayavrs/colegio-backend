@@ -49,13 +49,9 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
-  classId: {
+  courseId: {
     type: Schema.Types.ObjectId,
-    ref: 'Class',
-  },
-  gradeId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Grade',
+    ref: 'Course',
   },
 });
 
