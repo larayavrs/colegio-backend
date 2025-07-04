@@ -1,47 +1,39 @@
 const { Schema, model } = require('mongoose');
 
 const scoreSchema = new Schema({
-  value: {
-    type: Number,
-    required: true,
-    min: 1.0,
-    max: 7.0,
-  },
-  type: {
-    type: String,
-    enum: [
-      'exam',
-      'assignment',
-      'oral',
-      'practical',
-      'other',
-    ],
-    default: 'assignment',
-  },
-  description: { type: String },
+  value: { type: Number, required: true },
+  type: { type: String, required: true }, // por ejemplo: examen, trabajo, evaluacion, etc.
+  date: { type: Date, default: Date.now },
   studentId: {
-    // estudiante que obtuvo el puntaje
+    // alumno al que pertenece la calificacion
     type: Schema.Types.ObjectId,
-    required: true,
     ref: 'User',
+    required: true,
   },
   subjectId: {
-    // materia a la que pertenece el puntaje
+    // materia a la que pertenece la calificacion
     type: Schema.Types.ObjectId,
-    required: true,
     ref: 'Subject',
+    required: true,
   },
   teacherId: {
-    // profesor que impartio la materia
+    // profesor que dio la calificacion
     type: Schema.Types.ObjectId,
-    required: true,
     ref: 'User',
+    required: true,
   },
   courseId: {
-    // curso al que pertenece el puntaje
+    // curso al que pertenece la calificacion
     type: Schema.Types.ObjectId,
-    required: true,
     ref: 'Course',
+  },
+});
+
+scoreSchema.set('toObject', {
+  transform: (doc, ret) => {
+    ret.id = ret._id;
+    delete ret._id;
+    delete ret.__v;
   },
 });
 
