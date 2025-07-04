@@ -13,7 +13,8 @@ const authorization = require('../middlewares/authorization');
 router.post(
   '/create',
   authentication,
-  authorization(['admin'], coursesController.create),
+  authorization(['admin']),
+  coursesController.create,
 );
 router.get('/', authentication, coursesController.findAll);
 router.get(
@@ -24,12 +25,14 @@ router.get(
 router.patch(
   '/modify/:id',
   authentication,
-  authorization(['admin'], coursesController.update),
+  authorization(['admin']),
+  coursesController.update,
 );
 router.delete(
   '/delete/:id',
   authentication,
-  authorization(['admin'], coursesController.delete),
+  authorization(['admin']),
+  coursesController.delete,
 );
 
 /* exportando el router */
