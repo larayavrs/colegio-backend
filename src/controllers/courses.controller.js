@@ -7,11 +7,10 @@ const coursesService = require('../services/courses.service');
 module.exports = {
   create: catchAsync(async (req, res, next) => {
     try {
-      const { name, level, stage, capacity, supervisorId } =
+      const { name, stage, capacity, supervisorId } =
         req.body;
       const course = await coursesService.create({
         name,
-        level,
         stage,
         capacity,
         supervisorId,
