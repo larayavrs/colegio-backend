@@ -3,8 +3,6 @@ const GlobalError = require('../helpers/errors');
 const success = require('../helpers/success');
 const catchAsync = require('../helpers/catch-async');
 
-const config = require('../config');
-
 /* services used in this controller */
 const usersService = require('../services/users.service');
 const authService = require('../services/auth.service');
