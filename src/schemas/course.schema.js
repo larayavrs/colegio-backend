@@ -11,7 +11,7 @@ const courseSchema = new Schema({
     enum: ['basica', 'media'],
     required: true,
   },
-  capacity: { type: Number, default: 0 },
+  capacity: { type: Number, default: 0, required: true },
   supervisorId: {
     type: Schema.Types.ObjectId,
     ref: 'User', // profesor jefe
