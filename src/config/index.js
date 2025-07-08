@@ -32,8 +32,16 @@ module.exports = {
     },
   },
   cors: {
-    origin: 'http://localhost:3000', // Change this to your frontend URL in production
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    origin: ['*', 'http://localhost:3000'], // Change this to your frontend URL in production
+    credentials: true,
+    methods: [
+      'GET',
+      'POST',
+      'PUT',
+      'DELETE',
+      'PATCH',
+      'OPTIONS',
+    ],
     optionsSuccessStatus: 204,
     maxAge: 3600, // 1 hour
   },
