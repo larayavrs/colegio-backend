@@ -9,7 +9,7 @@ const announceSchema = new Schema({
     enum: ['info', 'warning', 'critical'],
     default: 'info',
   },
-  visible: { type: Boolean, default: true },
+  visible: { type: Boolean, default: true, required: true },
 });
 
 module.exports = model('Announce', announceSchema);
